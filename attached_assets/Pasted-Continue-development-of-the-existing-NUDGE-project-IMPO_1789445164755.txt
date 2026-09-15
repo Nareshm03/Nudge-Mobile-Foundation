@@ -1,0 +1,149 @@
+Continue development of the existing NUDGE project.
+
+IMPORTANT:
+This is a controlled implementation task.
+Implement ONLY the Firebase foundation described below.
+Do not implement tasks, reminders, recurring tasks, notifications, app usage, camera, microphone, contacts, calls, location, calendar, AI, or admin dashboard functionality yet.
+
+Do not redesign the existing foundation UI unless required for Firebase initialization.
+
+OBJECTIVE
+
+Establish a production-ready Firebase integration layer for the NUDGE application.
+
+TECHNICAL REQUIREMENTS
+
+Use the existing project’s architecture and TypeScript setup.
+
+Firebase services that will eventually be used:
+
+* Firebase Authentication
+* Cloud Firestore
+* Firebase Cloud Messaging
+* Firebase Cloud Functions
+* Firebase Storage
+
+For this task, establish the client-side Firebase foundation only.
+
+IMPLEMENT
+
+1. Add the appropriate Firebase dependency using the project’s existing package manager.
+2. Create a centralized Firebase configuration module.
+3. Read Firebase configuration from environment variables.
+4. Create a safe environment-variable template/documentation.
+5. Never hardcode credentials, API keys, project IDs, or secrets directly into source code.
+6. Create clearly separated service boundaries for:
+    * Firebase initialization
+    * Authentication
+    * Firestore
+    * Storage
+    * Messaging
+
+Do not implement actual authentication yet.
+
+Do not implement Firestore repositories yet.
+
+Do not implement FCM notifications yet.
+
+These should only have clean service boundaries/interfaces where appropriate.
+
+ENVIRONMENT CONFIGURATION
+
+Use Expo-compatible public client configuration conventions for values that are safe to expose to a mobile client.
+
+Document clearly which Firebase values belong in environment configuration.
+
+Do not commit real credentials.
+
+ARCHITECTURE
+
+Respect the existing structure:
+
+app/
+components/
+features/
+domain/
+data/
+services/
+platform/
+ai/
+notifications/
+theme/
+constants/
+types/
+config/
+
+Firebase-specific code should live behind the existing services/config architecture.
+
+Do not scatter Firebase initialization throughout UI components.
+
+ERROR HANDLING
+
+Create appropriate initialization/error handling.
+
+The application should fail gracefully if Firebase configuration is missing during development.
+
+Do not hide configuration errors.
+
+TYPESCRIPT
+
+Maintain strict TypeScript compatibility.
+
+Avoid any unless technically unavoidable and documented.
+
+QUALITY
+
+Do not introduce unnecessary dependencies.
+
+Do not duplicate Firebase initialization.
+
+Do not modify unrelated existing code.
+
+Do not create fake Firebase data.
+
+Do not create mock authentication.
+
+TESTING
+
+After implementation:
+
+1. Run the project’s TypeScript typecheck.
+2. Run the Expo development workflow.
+3. Verify the existing foundation screen still renders.
+4. Verify Firebase initialization does not break development when environment variables are configured.
+5. Verify missing environment configuration produces a clear development-safe error rather than a cryptic crash.
+
+DOCUMENTATION
+
+Update README/documentation with:
+
+* Firebase setup requirements
+* Required environment variables
+* How to configure Firebase locally
+* Which Firebase services are planned
+* Security note explaining that Firebase client configuration is not a substitute for Firestore Security Rules
+
+IMPORTANT SECURITY NOTE:
+
+Do not create permissive Firestore rules such as:
+
+allow read, write: if true;
+
+Do not create production Firestore security rules yet because the authorization model has not been implemented.
+
+FINAL RESPONSE
+
+Report only:
+
+1. Files created/modified
+2. Firebase packages added
+3. Firebase services initialized
+4. Environment variables required
+5. Typecheck result
+6. Expo run result
+7. Any warnings/errors
+8. Any decisions that require approval before the next phase
+
+STOP after completing this task.
+
+Do not proceed to authentication or authorization automatically.

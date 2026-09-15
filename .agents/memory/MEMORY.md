@@ -1,0 +1,1 @@
+- [Firebase package installation](firebase-package-install.md) — scope dependency installs to the owning workspace package.

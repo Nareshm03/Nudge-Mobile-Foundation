@@ -7,6 +7,20 @@ export type FirebaseClientConfig = {
   appId: string;
 };
 
+export type FirebaseClientConfigKey = keyof FirebaseClientConfig;
+
+export const FIREBASE_ENVIRONMENT_KEYS: Record<
+  FirebaseClientConfigKey,
+  string
+> = {
+  apiKey: 'EXPO_PUBLIC_FIREBASE_API_KEY',
+  authDomain: 'EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN',
+  projectId: 'EXPO_PUBLIC_FIREBASE_PROJECT_ID',
+  storageBucket: 'EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET',
+  messagingSenderId: 'EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID',
+  appId: 'EXPO_PUBLIC_FIREBASE_APP_ID',
+};
+
 function readPublicEnv(name: string): string {
   return process.env[name] ?? '';
 }
@@ -19,14 +33,28 @@ function readPublicEnv(name: string): string {
  * secrets must stay in managed server-side secrets when backend work begins.
  */
 export const firebaseClientConfig: FirebaseClientConfig = {
-  apiKey: readPublicEnv('EXPO_PUBLIC_FIREBASE_API_KEY'),
-  authDomain: readPublicEnv('EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN'),
-  projectId: readPublicEnv('EXPO_PUBLIC_FIREBASE_PROJECT_ID'),
-  storageBucket: readPublicEnv('EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET'),
-  messagingSenderId: readPublicEnv('EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID'),
-  appId: readPublicEnv('EXPO_PUBLIC_FIREBASE_APP_ID'),
+  apiKey: readPublicEnv(FIREBASE_ENVIRONMENT_KEYS.apiKey),
+  authDomain: readPublicEnv(FIREBASE_ENVIRONMENT_KEYS.authDomain),
+  projectId: readPublicEnv(FIREBASE_ENVIRONMENT_KEYS.projectId),
+  storageBucket: readPublicEnv(FIREBASE_ENVIRONMENT_KEYS.storageBucket),
+  messagingSenderId: readPublicEnv(FIREBASE_ENVIRONMENT_KEYS.messagingSenderId),
+  appId: readPublicEnv(FIREBASE_ENVIRONMENT_KEYS.appId),
 };
 
-export const hasFirebaseClientConfig = Object.values(firebaseClientConfig).every(
-  (value) => value.length > 0,
-);
+export const missingFirebaseConfigKeys = (
+  Object.keys(FIREBASE_ENVIRONMENT_KEYS) as FirebaseClientConfigKey[]
+).filter((key) => firebaseClientConfig[key].length === 0);
+
+export const hasFirebaseClientConfig = missingFirebaseConfigKeys.length === 0;
+
+export function getFirebaseConfigurationMessage(): string {
+  if (hasFirebaseClientConfig) {
+    return 'Firebase client configuration is present.';
+  }
+
+  const missing = missingFirebaseConfigKeys
+    .map((key) => FIREBASE_ENVIRONMENT_KEYS[key])
+    .join(', ');
+
+  return `Firebase client configuration is incomplete. Add: ${missing}`;
+}

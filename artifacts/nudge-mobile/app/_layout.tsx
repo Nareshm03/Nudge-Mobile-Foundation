@@ -5,6 +5,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { setBaseUrl } from '@workspace/api-client-react';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { initializeFirebase } from '@/services/firebase';
 import {
   Inter_400Regular,
   Inter_500Medium,
@@ -20,6 +21,7 @@ SplashScreen.preventAutoHideAsync();
 
 const apiDomain = process.env.EXPO_PUBLIC_DOMAIN;
 setBaseUrl(apiDomain ? `https://${apiDomain}` : null);
+initializeFirebase();
 
 const queryClient = new QueryClient();
 

@@ -43,10 +43,32 @@ hardcoding color or spacing values.
 
 ## Firebase configuration
 
-Copy `.env.example` to a local environment file and provide the client-safe
-`EXPO_PUBLIC_FIREBASE_*` identifiers when Firebase setup begins. The values are
-read by `config/environment.ts`; no credentials are committed here. Firebase
-Admin credentials and other server secrets must be managed server-side.
+The Firebase client foundation lives in `services/firebase/` and is initialized
+once from the app root. Copy `.env.example` to `.env.local` and provide the
+following client-safe values from Firebase project settings:
+
+- `EXPO_PUBLIC_FIREBASE_API_KEY`
+- `EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN`
+- `EXPO_PUBLIC_FIREBASE_PROJECT_ID`
+- `EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET`
+- `EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
+- `EXPO_PUBLIC_FIREBASE_APP_ID`
+
+Expo exposes `EXPO_PUBLIC_*` values in the mobile bundle, so these values must
+never be treated as secrets. They identify the Firebase client project; they
+do not grant authorization by themselves. Firebase Admin credentials and
+server-only secrets must remain in managed server-side secrets.
+
+If the values are missing during development, NUDGE logs a clear
+`configuration-missing` warning and keeps the foundation screen available.
+Firebase service consumers should use `getFirebaseApp()` and handle its typed
+initialization error rather than assuming configuration exists.
+
+Planned Firebase services are Authentication, Cloud Firestore, Cloud Storage,
+Cloud Messaging, and Cloud Functions. Only client app initialization is
+included in this phase. Do not add permissive Firestore rules such as
+`allow read, write: if true;`. Security Rules must be designed together with
+the authorization model before Firestore is used.
 
 ## Development
 
