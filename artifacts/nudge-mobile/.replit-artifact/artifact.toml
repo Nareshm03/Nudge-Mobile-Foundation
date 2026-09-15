@@ -1,0 +1,24 @@
+kind = "mobile"
+previewPath = "/"
+title = "NUDGE Mobile"
+description = "An Android-first personal memory and reminder app foundation for users who want a calm, intelligent place to organize what matters."
+version = "1.0.0"
+id = "artifacts/nudge-mobile"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/" ]
+localPort = 20510
+
+[services.development]
+run = "pnpm --filter @workspace/nudge-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nudge-mobile", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/nudge-mobile", "run", "serve" ]
+
+[services.env]
+PORT = "20510"
+BASE_PATH = "/"

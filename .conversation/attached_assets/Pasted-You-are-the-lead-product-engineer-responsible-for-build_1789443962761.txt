@@ -1,0 +1,206 @@
+You are the lead product engineer responsible for building a production-quality application called NUDGE.
+
+NUDGE is an intelligent personal memory and reminder platform.
+
+IMPORTANT DEVELOPMENT RULE:
+Do NOT attempt to build the entire application at once.
+We will build the system incrementally through small, controlled engineering tasks.
+For this prompt, ONLY establish and document the project foundation.
+
+PRODUCT ROLES:
+
+1. USER
+    The primary mobile-app user.
+    The user can create and receive reminders/tasks and use Nudge’s memory-assistance features.
+2. ADMIN
+    An authorized administrator who can manage assigned tasks and view the activity/insights that the system is designed to expose to the administrator.
+
+PRIMARY PLATFORM:
+
+Mobile application:
+
+* Android-first
+* React Native
+* Expo where compatible
+* TypeScript
+
+Backend:
+
+* Firebase
+* Firebase Authentication
+* Cloud Firestore
+* Firebase Cloud Functions
+* Firebase Cloud Messaging
+* Firebase Storage where required
+
+Admin application:
+
+* React/Next.js
+* TypeScript
+* Firebase integration
+
+AI capabilities will be added incrementally later.
+
+CORE PRODUCT AREAS:
+
+* Task management
+* One-time reminders
+* Recurring/repeat tasks
+* Advanced recurring-task rules
+* Notification/reminder engine
+* App-usage intelligence
+* Voice task capture
+* Camera capture
+* OCR/handwriting recognition
+* Contacts integration
+* Call-related functionality where technically and legally permitted by Android
+* Location-based reminders
+* Calendar-aware reminders
+* AI task understanding
+* Personalized memory insights
+* Admin dashboard
+* User dashboard
+* Analytics
+* Secure Firebase authorization
+
+PERMISSION AREAS WE EXPECT TO SUPPORT:
+
+* Notifications
+* Microphone
+* Camera
+* Contacts
+* Usage Access
+* Location
+* Calendar
+* Call-related permissions where supported
+* Background execution/system access where required
+
+Do NOT implement these permissions yet.
+
+ARCHITECTURE REQUIREMENTS:
+
+Use a clean, scalable architecture suitable for a production application.
+
+Separate:
+
+* UI
+* business/domain logic
+* data access
+* Firebase services
+* platform-specific functionality
+* AI services
+* notification/reminder services
+
+Avoid putting business logic directly inside UI components.
+
+DESIGN REQUIREMENTS:
+
+The application should feel like a premium modern consumer product.
+
+Design principles:
+
+* Clean
+* Minimal
+* Fast
+* Accessible
+* Responsive
+* Consistent typography
+* Consistent spacing
+* Proper loading states
+* Proper empty states
+* Proper error states
+* Dark/light theme architecture
+* Reusable components
+
+IMPORTANT:
+
+Do NOT implement fake functionality just to make screens appear complete.
+
+Do NOT create placeholder APIs pretending they work.
+
+Do NOT implement authentication yet.
+
+Do NOT implement the task system yet.
+
+Do NOT implement recurring tasks yet.
+
+Do NOT implement notifications yet.
+
+Do NOT implement app-usage tracking yet.
+
+Do NOT implement camera/OCR yet.
+
+Do NOT implement microphone/voice yet.
+
+Do NOT implement contacts/call functionality yet.
+
+Do NOT implement location/calendar yet.
+
+Do NOT implement AI yet.
+
+Do NOT create unnecessary dependencies.
+
+TASK:
+
+1. Inspect the current Replit project.
+2. Determine whether an existing project exists.
+3. If empty, initialize the appropriate React Native + Expo + TypeScript project structure.
+4. Establish the folder architecture.
+5. Establish reusable configuration files.
+6. Establish a basic design-system foundation.
+7. Add environment-variable structure for Firebase configuration WITHOUT exposing secrets.
+8. Add README documentation explaining the architecture and development strategy.
+9. Add a clear TODO/roadmap document for future phases.
+10. Make sure the project runs successfully.
+
+FOLDER ARCHITECTURE SHOULD BE SIMILAR TO:
+
+src/
+app/
+components/
+features/
+services/
+domain/
+data/
+hooks/
+utils/
+constants/
+types/
+theme/
+config/
+
+Keep the structure practical. Do not create dozens of empty files unnecessarily.
+
+QUALITY REQUIREMENTS:
+
+* TypeScript strict mode where practical.
+* No obvious TypeScript errors.
+* No unused dependencies.
+* No hardcoded Firebase secrets.
+* No hardcoded credentials.
+* No fake production data.
+* Follow maintainable naming conventions.
+* Keep components small and reusable.
+
+BEFORE FINISHING:
+
+Run the project/build checks available in the environment.
+
+If something fails:
+
+1. Diagnose the cause.
+2. Fix it.
+3. Run the check again.
+
+FINAL RESPONSE FROM YOU:
+
+Report only:
+
+1. What you created.
+2. Current architecture.
+3. Dependencies added.
+4. Build/run status.
+5. Any blockers.
+6. What should be implemented next.
+
+Do NOT proceed into future Nudge features unless required to make the foundation run.
